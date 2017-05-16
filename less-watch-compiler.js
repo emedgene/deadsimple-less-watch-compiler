@@ -29,6 +29,7 @@ program
   .usage('[options] <source_dir> <destination_dir> [main_file_name]')
   .option('--source-map', "Generate source map for css files")
   .option('--main-file <file>', "Specify <file> as the file to always re-compile e.g. '--main-file style.less'")
+  .option('--lessc <cmd_path>', "Specify <cmd_path> for lessc e.g. '--lessc node_modules/less/bin/lessc'")
   // .option('-p, --plugins <plugin-a>,<plugin-b>', 'List of plugins separated by commas', plugins)
   .parse(process.argv);
 
@@ -43,11 +44,14 @@ fs.exists(cwd+'/less-watch-compiler.config.json', function(exists) {
 });
 
 function init(){
+  lessWatchCompilerUtils.config.lessc = 'lessc';
   if (program.args[0])   lessWatchCompilerUtils.config.watchFolder =  program.args[0];
   if (program.args[1])   lessWatchCompilerUtils.config.outputFolder =  program.args[1];
   if (program.args[2])   lessWatchCompilerUtils.config.mainFile =  program.args[2];
   if (program.mainFile)   lessWatchCompilerUtils.config.mainFile =  program.mainFile;
   if (program.sourceMap) lessWatchCompilerUtils.config.sourceMap = program.sourceMap;
+  if (program.lessc) lessWatchCompilerUtils.config.lessc = program.lessc;
+
 
   /*
     3rd parameter is optional, but once you define it, then we will just compile 

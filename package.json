@@ -22,7 +22,7 @@
     "amdefine": ">= 0.1.0",
     "commander": "^2.9.0",
     "extend": ">= 2.0.0",
-    "global": "^4.3.1",
+    "global": "^4.4.0",
     "less": "^2.7.1",
     "less-watch-compiler": "^1.2.3",
     "mocha": "^3.1.2",
